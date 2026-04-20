@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %} Reset Password Page {% endblock %}
+
+{% block content %}
+<h1> Reset Password Page </h1>
+<form method="POST" action="{% url 'uresetpass' %}">
+{% csrf_token %}
+       <input type="text" placeholder="enter reg username" name="un" required>
+   <br><br>
+       <input type="email" placeholder="enter your reg email" name="em" required>
+   <br><br>
+       <input type="submit" value="Reset">
+</form>
+{{ msg }}
+{% endblock %}

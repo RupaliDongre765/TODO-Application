@@ -1,0 +1,6 @@
+username:
+{{ contact_name }}
+
+feedback:
+{{ form_content|safe|striptags }}
+

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block title %} Feedback Page {% endblock %}
+
+{% block content %}
+
+     
+   <body style="background-color:lightyellow">
+		<h1>Feedback Page</h1>
+	
+ <script type="text/javascript">
+		function validate(){
+			var n = document.getElementById('id_name')
+			var f = document.getElementById('id_feedback')
+			var nr = /^[A-Za-z]+$/
+
+			if(! nr.test(n.value)) {
+				alert('name should contain only letters')
+				n.value=""
+				n.focus()
+				return false
+			}
+			if(n.value.length < 2){
+				alert('name should contain atleast 2 letters')
+				n.value=""
+				n.focus()
+				return false
+			}
+			if(f.value.length != 10){
+				alert('Feedback Should contain 10 letters')
+				f.value=""
+				f.focus()
+				return false
+			}
+			return true
+		}
+	</script>
+			
+		<form method="post">
+    		{% csrf_token %}
+			
+    				{{ form.as_p }}
+			
+    		<div class="form-actions">
+			<button type="submit">Submit</button>
+	</div>
+
+</form>
+
+{% if messages %}
+<ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>  
+    {% endif %}
+
+    <div class="content">
+    <div class="section-inner clearfix">
+{% endblock %}

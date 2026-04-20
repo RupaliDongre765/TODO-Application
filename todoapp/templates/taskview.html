@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Task view Page {% endblock %}
+{% block content %}
+<body style="background-color:lightyellow">
+		<h1> Task View Page </h1>
+	<!------<link rel='icon' href="{% static 'images/mo.jpg' %}">----->
+     		<link rel="stylesheet" href="{% static 'css/c1.css' %}">
+		<form method="POST">
+		{% csrf_token %}
+
+			
+
+<h2> Task of {{ user.username }} is </h2>
+	<table border="2">
+
+{% if alltodos %}
+
+<br>
+		<tr>
+			<th> Task</th>
+			<th> Date & time </th>
+			<th> Delete </th>
+			
+			
+		</tr>
+		{% for todo in alltodos %}
+			
+			<tr>
+				<td> {{ todo.task }} </td>
+				<td> {{ todo.created }} </td> 
+				
+				<td> <a href="{% url 'delete' todo.id %}" onclick="return confirm('Are you sure?')" style="color:Red; text-decoration: none"> Delete  </a></td>
+				
+			</tr>
+		{% endfor %}
+	{% else %}
+	<tr>
+		<td> No data found </td>
+	</tr>
+{% endif %}
+</body>
+{% endblock %}
+
